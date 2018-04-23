@@ -4,13 +4,19 @@ let clear;
 let canvas;
 let sliderVal;
 let multiplier;
-let ss, ms;
+let sliderDiv
+let multiplierDiv;
+
+let stopped;
+
+let framesPerUpdate = 4;
+const indicesPerPixel = 4;
 
 function updateValueDiv()
 {
     sliderVal.html("Total frames per redraw: " + (slider.value() * multiplier.value()));
-    ss.html("Frames per redraw (" + slider.value() + "):");
-    ms.html("Redraw frames multiplier (" + multiplier.value() + "):");
+    sliderDiv.html("Frames per redraw (" + slider.value() + "):");
+    multiplierDiv.html("Redraw frames multiplier (" + multiplier.value() + "):");
 }
 
 function setup()
@@ -18,11 +24,11 @@ function setup()
     pixelDensity(1);
     canvas = createCanvas(640, 480);
     createDiv("");
-    ss = createDiv("Frames per redraw: ");
+    sliderDiv = createDiv("Frames per redraw: ");
     slider = createSlider(1, 60, 53, 1);
     slider.style('width', '320px');
     createDiv("");
-    ms = createDiv("Multiplier value:");
+    multiplierDiv = createDiv("Multiplier value:");
     multiplier = createSlider(1, 60, 24, 1);
     multiplier.style("width", "320px");
     sliderVal = createDiv("Total frames per redraw: " + (slider.value() * multiplier.value()));
@@ -41,9 +47,6 @@ function clearCanvas()
 {
     canvas.clear();
 }
-
-let framesPerUpdate = 4;
-const indicesPerPixel = 4;
 
 function initValue()
 {
@@ -75,8 +78,6 @@ function draw()
     }
     updatePixels();
 }
-
-let stopped = false;
 
 function keyPressed()
 {
