@@ -71,9 +71,9 @@ function draw()
     loadPixels();
     for (let i = initValue(); i < stopValue(); i += stepValue()) {
 
-        pixels[i + 0] = random(255) % mouseX;
-        pixels[i + 1] = random(255) % mouseY;
-        pixels[i + 2] = random(255) % abs(mouseX - mouseY);
+        pixels[i + 0] = random(255);
+        pixels[i + 1] = random(255);
+        pixels[i + 2] = random(255);
         pixels[i + 3] = random(255);
     }
     updatePixels();
