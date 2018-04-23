@@ -40,12 +40,8 @@ function setup()
     resume.mousePressed(loop);
 
     clear = createButton("Clear");
-    clear.mousePressed(clearCanvas);
-}
-
-function clearCanvas()
-{
-    canvas.clear();
+    clear.mousePressed(canvas.clear);
+    
 }
 
 function initValue()
