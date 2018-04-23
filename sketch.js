@@ -5,6 +5,7 @@ let canvas;
 let sliderVal;
 let multiplier;
 let ss, ms;
+
 function updateValueDiv()
 {
     sliderVal.html("Total frames per redraw: " + (slider.value() * multiplier.value()));
@@ -18,11 +19,11 @@ function setup()
     canvas = createCanvas(640, 480);
     createDiv("");
     ss = createDiv("Frames per redraw: ");
-    slider = createSlider(1, 60, 5, 1);
+    slider = createSlider(1, 60, 53, 1);
     slider.style('width', '320px');
     createDiv("");
     ms = createDiv("Multiplier value:");
-    multiplier = createSlider(1, 60, 1, 1);
+    multiplier = createSlider(1, 60, 24, 1);
     multiplier.style("width", "320px");
     sliderVal = createDiv("Total frames per redraw: " + (slider.value() * multiplier.value()));
 
@@ -46,7 +47,7 @@ const indicesPerPixel = 4;
 
 function initValue()
 {
-    return indicesPerPixel * (frameCount % framesPerUpdate);
+    return (indicesPerPixel) * (frameCount % framesPerUpdate);
 }
 
 function stopValue()
@@ -56,7 +57,7 @@ function stopValue()
 
 function stepValue()
 {
-    return indicesPerPixel * framesPerUpdate;
+    return (indicesPerPixel) * framesPerUpdate;
 }
 
 function draw()
@@ -66,9 +67,10 @@ function draw()
 
     loadPixels();
     for (let i = initValue(); i < stopValue(); i += stepValue()) {
+
         pixels[i + 0] = random(255) % mouseX;
         pixels[i + 1] = random(255) % mouseY;
-        pixels[i + 2] = random(255) % abs(mouseX * mouseY);
+        pixels[i + 2] = random(255) % abs(mouseX - mouseY);
         pixels[i + 3] = random(255);
     }
     updatePixels();
