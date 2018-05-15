@@ -12,15 +12,13 @@ let stopped;
 let framesPerUpdate = 4;
 const indicesPerPixel = 4;
 
-function updateValueDiv()
-{
+function updateValueDiv() {
     sliderVal.html("Total frames per redraw: " + (slider.value() * multiplier.value()));
     sliderDiv.html("Frames per redraw (" + slider.value() + "):");
     multiplierDiv.html("Redraw frames multiplier (" + multiplier.value() + "):");
 }
 
-function setup()
-{
+function setup() {
     pixelDensity(1);
     canvas = createCanvas(640, 480);
     createDiv("");
@@ -40,27 +38,23 @@ function setup()
     resume.mousePressed(loop);
 
     clear = createButton("Clear");
-    clear.mousePressed(canvas.clear);
-    
+    clear.mousePressed(() => canvas.clear());
+
 }
 
-function initValue()
-{
+function initValue() {
     return (indicesPerPixel) * (frameCount % framesPerUpdate);
 }
 
-function stopValue()
-{
+function stopValue() {
     return (indicesPerPixel * width * height) - initValue();
 }
 
-function stepValue()
-{
+function stepValue() {
     return (indicesPerPixel) * framesPerUpdate;
 }
 
-function draw()
-{
+function draw() {
     framesPerUpdate = slider.value() * multiplier.value();
     updateValueDiv();
 
@@ -75,8 +69,7 @@ function draw()
     updatePixels();
 }
 
-function keyPressed()
-{
+function keyPressed() {
     if (key === ' ') {
         if (stopped) {
             loop();
